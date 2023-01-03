@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
 import 'package:testone/mixins/constants.dart';
+import 'package:testone/screens/task_details.dart';
 
 enum TaskFilters {
   all,
@@ -42,17 +43,20 @@ class Homepage extends HookConsumerWidget {
                     child: Row(
                       children: [
                         todayTaskCard(
+                          context,
                           title: "User experience design",
                           value: 0.4,
                           icon: Icons.aod_outlined,
                         ),
                         todayTaskCard(
+                          context,
                           color: kSecondary,
                           title: "Meeting with a designer",
                           value: 0.7,
                           icon: Icons.people_outlined,
                         ),
                         todayTaskCard(
+                          context,
                           title: "Fix deployment Issues",
                           value: 0.5,
                           icon: Icons.webhook_sharp,
@@ -88,75 +92,6 @@ class Homepage extends HookConsumerWidget {
               ],
             ),
           ),
-        ),
-      ),
-      bottomNavigationBar: Container(
-        height: 80,
-        padding: const EdgeInsets.all(8),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          boxShadow: [
-            BoxShadow(
-              offset: const Offset(0, 3),
-              color: kDarkBg.withOpacity(0.2),
-              blurRadius: 10,
-            ),
-          ],
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            IconButton(
-              onPressed: () {},
-              icon: const Icon(
-                Icons.home_filled,
-              ),
-              color: kPrimary,
-            ),
-            IconButton(
-              onPressed: () {},
-              icon: const Icon(
-                Icons.archive_outlined,
-              ),
-              color: Colors.grey.shade600,
-            ),
-            Container(
-              padding: const EdgeInsets.all(3),
-              decoration: BoxDecoration(
-                color: kPrimary,
-                borderRadius: BorderRadius.circular(100),
-                boxShadow: [
-                  BoxShadow(
-                    offset: const Offset(0, 1),
-                    color: kPrimary.withOpacity(0.2),
-                    blurRadius: 10,
-                  ),
-                ],
-              ),
-              child: IconButton(
-                onPressed: () {},
-                icon: const Icon(
-                  Icons.add,
-                ),
-                color: Colors.white,
-                iconSize: 30,
-              ),
-            ),
-            IconButton(
-              onPressed: () {},
-              icon: const Icon(
-                Icons.notifications_outlined,
-              ),
-              color: Colors.grey.shade600,
-            ),
-            IconButton(
-              onPressed: () {},
-              icon: const Icon(
-                Icons.settings_outlined,
-              ),
-              color: Colors.grey.shade600,
-            ),
-          ],
         ),
       ),
     );
@@ -235,7 +170,8 @@ class Homepage extends HookConsumerWidget {
     );
   }
 
-  Widget todayTaskCard({
+  Widget todayTaskCard(
+    BuildContext context, {
     Color color = kPrimary,
     required String title,
     required double value,
@@ -245,7 +181,14 @@ class Homepage extends HookConsumerWidget {
       width: 210,
       margin: const EdgeInsets.only(right: kPadding),
       child: InkWell(
-        onTap: () {},
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const TaskDetails(),
+            ),
+          );
+        },
         borderRadius: BorderRadius.circular(kPadding),
         child: Ink(
           padding: const EdgeInsets.all(kPadding),
