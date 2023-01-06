@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:testone/mixins/constants.dart';
+import 'package:testone/screens/add_task.dart';
 import 'package:testone/screens/home.dart';
 import 'package:testone/screens/intro.dart';
 import 'package:testone/screens/notification.dart';
 import 'package:testone/screens/profiles.dart';
+import 'package:testone/screens/today_tasks.dart';
 import 'package:testone/states/theme_state.dart';
 
 void main(List<String> args) {
@@ -46,7 +48,7 @@ class _AppWithBottomNavbarState extends State<AppWithBottomNavbar> {
     NavItem(
       icon: Icons.archive_outlined,
       selectedIcon: Icons.archive_rounded,
-      page: const Scaffold(),
+      page: const TodaysTask(),
     ),
     NavItem(
       icon: Icons.add,
@@ -105,7 +107,13 @@ class _AppWithBottomNavbarState extends State<AppWithBottomNavbar> {
                     ],
                   ),
                   child: IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: ((context) => const AddTaskPage()),
+                        ),
+                      );
+                    },
                     icon: const Icon(
                       Icons.add,
                     ),

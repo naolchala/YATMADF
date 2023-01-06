@@ -44,6 +44,8 @@ dependencies:
     animate_icons: ^2.0.0
     flutter_svg: ^1.1.6
     syncfusion_flutter_charts: ^20.4.41
+    calendar_timeline: ^1.1.0
+    flutter_calendar_carousel: ^2.4.1
 
 dev_dependencies:
     flutter_test:
